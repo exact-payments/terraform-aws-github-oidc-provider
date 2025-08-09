@@ -62,3 +62,9 @@ variable "create_identity_provider" {
   default     = true
   description = "This switch allows you to create or not create the identity provider.  Only one can exist.  If you are creating multiple Github OIDC Federations, only one of the instantiations should create this or the Terraform run will fail."
 }
+
+variable "max_session_duration" {
+  type        = number
+  default     = 3600
+  description = "The maximum session duration for the role in seconds"
+}
