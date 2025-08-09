@@ -1,12 +1,8 @@
 resource "aws_iam_openid_connect_provider" "this" {
   count = var.create_identity_provider ? 1 : 0
-
   url = var.url
-
   client_id_list = var.client_id_list
-
   thumbprint_list = var.thumbprint_list
-
   tags = var.tags
 }
 
@@ -19,6 +15,7 @@ module "iam_assumable_role_admin" {
   role_policy_arns              = [aws_iam_policy.iam_policy.arn]
   oidc_fully_qualified_subjects = var.validate_conditions
   oidc_subjects_with_wildcards  = var.validate_wildcard_conditions
+  max_session_duration          = var.max_session_duration
   tags                          = var.tags
 }
 
